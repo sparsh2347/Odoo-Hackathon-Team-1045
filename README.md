@@ -125,6 +125,8 @@ Here are some exciting improvements planned for **StackIt**:
 
 ## 📸 UI Previews (Coming Soon!)
 
+🎥 [Click here to watch the demo video](https://www.loom.com/share/afc351e0fcff4962a7541fda56333c81?sid=c0c34e4b-557f-4769-821d-f31744e4d02f)
+
 <!-- You can add screenshots here -->
 <!-- ![Dashboard](screenshots/dashboard.png) -->
 
