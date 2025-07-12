@@ -1,0 +1,184 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username      String    @unique
+  name          String?
+  bio           String?
+  avatar        String?
+  isVerified    Boolean   @default(false)
+  role          Role      @default(USER)
+  reputation    Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  questions     Question[]
+  answers       Answer[]
+  questionVotes QuestionVote[]
+  answerVotes   AnswerVote[]
+  comments      Comment[]
+  blogs         Blog[]
+  blogVotes     BlogVote[]
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  tags        String[]
+  views       Int      @default(0)
+  voteCount   Int      @default(0)
+  isResolved  Boolean  @default(false)
+  acceptedId  String?
+  authorId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author      User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  answers     Answer[]
+  votes       QuestionVote[]
+  comments    Comment[]
+
+  @@map("questions")
+}
+
+model Answer {
+  id         String   @id @default(cuid())
+  content    String
+  voteCount  Int      @default(0)
+  isAccepted Boolean  @default(false)
+  questionId String
+  authorId   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  question   Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  author     User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  votes      AnswerVote[]
+  comments   Comment[]
+
+  @@map("answers")
+}
+
+model Blog {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  excerpt     String?
+  tags        String[]
+  views       Int      @default(0)
+  voteCount   Int      @default(0)
+  isPublished Boolean  @default(true)
+  authorId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author    User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  votes     BlogVote[]
+  comments  Comment[]
+
+  @@map("blogs")
+}
+
+model QuestionVote {
+  id         String   @id @default(cuid())
+  type       VoteType
+  questionId String
+  userId     String
+  createdAt  DateTime @default(now())
+
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, userId])
+  @@map("question_votes")
+}
+
+model AnswerVote {
+  id       String   @id @default(cuid())
+  type     VoteType
+  answerId String
+  userId   String
+  createdAt DateTime @default(now())
+
+  answer   Answer   @relation(fields: [answerId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([answerId, userId])
+  @@map("answer_votes")
+}
+
+model BlogVote {
+  id       String   @id @default(cuid())
+  type     VoteType
+  blogId   String
+  userId   String
+  createdAt DateTime @default(now())
+
+  blog     Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([blogId, userId])
+  @@map("blog_votes")
+}
+
+model Comment {
+  id         String    @id @default(cuid())
+  content    String
+  authorId   String
+  questionId String?
+  answerId   String?
+  blogId     String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  question   Question? @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answer     Answer?   @relation(fields: [answerId], references: [id], onDelete: Cascade)
+  blog       Blog?     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  type      NotificationType
+  title     String
+  content   String
+  isRead    Boolean          @default(false)
+  userId    String
+  createdAt DateTime         @default(now())
+
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum VoteType {
+  UP
+  DOWN
+}
+
+enum NotificationType {
+  ANSWER
+  COMMENT
+  MENTION
+  VOTE
+}
