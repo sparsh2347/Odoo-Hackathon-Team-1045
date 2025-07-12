@@ -45,40 +45,6 @@ StackIt is a powerful knowledge-sharing platform where users can:
 Whether you're a beginner, an expert, or just browsing as a guest — StackIt is your digital knowledge playground.
 
 ---
-## 📌 Future Enhancements
-
-Here are some exciting improvements planned for **StackIt**:
-
-- 🤖 **Auto Moderation System**  
-  Automatically detect and filter inappropriate or spammy content in real-time for questions, answers, blogs, and comments.
-
-- 🏷️ **Smart Tag Extraction**  
-  AI-based automatic tag generation from question or blog content to improve discoverability and reduce manual effort.
-
-- 🔍 **Full-text Search Engine**  
-  Enable lightning-fast search across all platform content (questions, answers, blogs).
-
-- 📱 **Mobile Application**  
-  Develop a cross-platform mobile app using React Native or Flutter.
-
-- 🌐 **Multilingual Support**  
-  Allow users to post and browse content in their preferred language.
-
-- 🧑‍🤝‍🧑 **Private Groups/Communities**  
-  Enable creation of closed discussion groups for team or topic-specific collaboration.
-
-- 🏆 **Gamification & Leaderboards**  
-  Introduce badges, ranks, and points to reward community contributions.
-
-- 📊 **User Analytics Dashboard**  
-  Let users view stats like most upvoted answers, blog reach, and reputation growth.
-
-- 💬 **Real-time Chat System**  
-  Enable direct communication between users for collaboration and discussion.
-
-- 🧠 **AI-Powered Auto Answer Suggestions**  
-  Recommend relevant answers for unanswered or newly asked questions.
----
 ## 🚀 Features
 
 ### 👥 User Management
@@ -121,6 +87,40 @@ Here are some exciting improvements planned for **StackIt**:
 | ----------- | ---------------- | -------------------- | -------------------------------------- |
 | React / Vue | Node.js / Django | PostgreSQL / MongoDB | Redis, WebSockets, Docker, TailwindCSS |
 
+---
+## 📌 Future Enhancements
+
+Here are some exciting improvements planned for **StackIt**:
+
+- 🤖 **Auto Moderation System**  
+  Automatically detect and filter inappropriate or spammy content in real-time for questions, answers, blogs, and comments.
+
+- 🏷️ **Smart Tag Extraction**  
+  AI-based automatic tag generation from question or blog content to improve discoverability and reduce manual effort.
+
+- 🔍 **Full-text Search Engine**  
+  Enable lightning-fast search across all platform content (questions, answers, blogs).
+
+- 📱 **Mobile Application**  
+  Develop a cross-platform mobile app using React Native or Flutter.
+
+- 🌐 **Multilingual Support**  
+  Allow users to post and browse content in their preferred language.
+
+- 🧑‍🤝‍🧑 **Private Groups/Communities**  
+  Enable creation of closed discussion groups for team or topic-specific collaboration.
+
+- 🏆 **Gamification & Leaderboards**  
+  Introduce badges, ranks, and points to reward community contributions.
+
+- 📊 **User Analytics Dashboard**  
+  Let users view stats like most upvoted answers, blog reach, and reputation growth.
+
+- 💬 **Real-time Chat System**  
+  Enable direct communication between users for collaboration and discussion.
+
+- 🧠 **AI-Powered Auto Answer Suggestions**  
+  Recommend relevant answers for unanswered or newly asked questions.
 ---
 
 ## 📸 UI Previews (Coming Soon!)
